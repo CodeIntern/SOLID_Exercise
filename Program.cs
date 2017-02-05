@@ -4,8 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* 
+ * Separating the Classes, Interfaces, and Implementations into different files would've been the better choice, but 
+ * because this is such a small concept program I just threw it all in a single file
+*/
+
 namespace InterfacesCoding
 {
+    /*
+     * Interfaces that declares which functions are necessary to be able to use the phones' features
+    */
+
     interface I720pCameraCompatible
     {
         void Add720pImage();
@@ -26,6 +35,7 @@ namespace InterfacesCoding
         void GetEUCharge();
     }
 
+    //Class representing a phone product, the iPhone
     public class iPhone : I720pCameraCompatible, IUSOutletCompatible
     {
         void I720pCameraCompatible.Add720pImage()
@@ -39,6 +49,7 @@ namespace InterfacesCoding
         }
     }
 
+    //Class representing a Nokia phone
     public class Nokia : I4kCameraCompatible, IEUOutletCompatible
     {
         void I4kCameraCompatible.Add4kImage()
@@ -52,6 +63,12 @@ namespace InterfacesCoding
         }
     }
 
+    /*
+        * For the PhoneCharger and CameraActivator classes, I decided to use the overloading route
+        * so that users wouldn't have to constantly remember what outlet or camera the phone uses
+    */
+
+    //Class that deals with the details of operating a certain type of electrical outlet
     public class PhoneCharger
     {
         static void ChargePhone(IUSOutletCompatible usPhone)
@@ -67,6 +84,7 @@ namespace InterfacesCoding
         }
     }
 
+    //Class that deals with the work details of operating a type of camera
     public class CameraActivator
     {
         static void TakePicture(I720pCameraCompatible camera720p)
@@ -82,6 +100,8 @@ namespace InterfacesCoding
         }
     }
 
+    //Added a main out of habit, not relevant
+    /*
     public class MainClass
     {
         static void Main()
@@ -89,4 +109,5 @@ namespace InterfacesCoding
             return;
         }
     }
+    */
 }
